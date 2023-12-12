@@ -252,7 +252,7 @@ function createHeaderInitials() {
 async function logOut() {
     deleteActuallyUserfromContact();
     await setCurrentUser(-1);
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
 }
 
 /**
