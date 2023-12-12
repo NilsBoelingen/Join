@@ -112,7 +112,7 @@
           left: 0;
           width: 100vw;
           height: 100vh;
-          background-color: #2A3647;
+          background-color: #F6F7F8;
         }
         100% {
           transform: translate(-45%, -48%) scale(100px, 122px);
