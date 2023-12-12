@@ -1,0 +1,235 @@
+.pointer {
+  cursor: pointer;
+}
+
+.font-20px-400 {
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.margin-bottom-8 {
+  margin-bottom: 8px;
+}
+
+.open-sans-19 {
+  font-family: "Open Sans";
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.font-16px-400 {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.justify-end {
+  display: flex;
+  justify-content: end;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.card-detail-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.16);
+  overflow-x: hidden;
+  z-index: 999;
+}
+
+.card-detail {
+  position: fixed;
+  top: 50%;
+  left: 150%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  width: 445px;
+  padding: 48px 40px;
+  flex-direction: column;
+  gap: 24px;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+  max-height: 80vh;
+  overflow: auto;
+}
+
+.no-gap-div {
+  margin-bottom: -16px;
+}
+
+.move-in-right {
+  animation: myfirst 125ms forwards;
+  animation-direction: initial;
+}
+
+@keyframes myfirst {
+  100% {
+    left: 50%;
+  }
+}
+
+
+.card-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.justify-right {
+  justify-content: flex-end;
+}
+
+.card-detail-category {
+  display: flex;
+  padding: 4px 24px;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 8px;
+  color: #fff;
+  font-family: Open Sans;
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.close-btn {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.close-btn:hover {
+    background-color: #d1d1d1;
+}
+
+.card-detail-title {
+  align-self: stretch;
+  font-family: Inter;
+  font-size: 61px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  word-wrap: break-word;
+}
+
+.card-detail-task {
+  align-self: stretch;
+  word-wrap: break-word;
+}
+
+.card-detail-date {
+  display: flex;
+  align-items: flex-start;
+  gap: 25px;
+  align-self: stretch;
+}
+
+.text-color-dark-blue {
+  color: #2a3647;
+}
+
+.card-detail-priority {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  align-self: stretch;
+}
+
+.card-detail-priority-right {
+  display: flex;
+  padding: 4px 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-transform: capitalize;
+}
+
+.card-detail-assigned {
+  align-self: stretch;
+}
+
+.card-detail-members {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 7px 16px;
+}
+
+.card-detail-subtasks {
+  align-self: stretch;
+  word-break: break-all;
+}
+
+.card-detail-subtask {
+  display: flex;
+  height: 32px;
+  padding: 6px 16px;
+  align-items: center;
+  gap: 16px;
+  width: fit-content;
+  border-radius: 10px;
+}
+
+.card-detail-subtask:hover {
+    background-color: #F0F0F0;
+}
+
+.delete-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.delete:hover {
+  color: #29abe2;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+.edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.edit:hover {
+  color: #29abe2;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+}

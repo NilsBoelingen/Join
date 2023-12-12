@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./node_modules/normalize.css/normalize.css" />
+    <link rel="stylesheet" href="./styles/fonts.css" />
+    <link rel="stylesheet" href="./styles/header.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/menubar.css" />
+    <link rel="stylesheet" href="./styles/board.css" />
+    <link rel="stylesheet" href="./styles/colors_members.css" />
+    <link rel="stylesheet" href="./styles/add_contact.css">
+    <link rel="stylesheet" href="./styles/addtask.css" />
+    <link rel="stylesheet" href="./styles/dialoganimation.css" />
+    <link rel="stylesheet" href="./styles/board_card_detail.css" />
+    <link rel="stylesheet" href="./styles/card_detail_edit.css" />
+    <link rel="stylesheet" href="./styles/media/main_media.css">
+    <link rel="stylesheet" href="./styles/media/addtask_media.css">
+    <link rel="stylesheet" href="./styles/media/header_media.css">
+    <link rel="stylesheet" href="./styles/media/menubar_media.css">
+    <link rel="stylesheet" href="./styles/media/add_contact_media.css">
+    <link rel="stylesheet" href="./styles/media/board_media.css" />
+    <script src="./js/main.js"></script>
+    <script src="./js/board.js"></script>
+    <script src="./js/data_tasks.js"></script>
+    <script src="./js/filter.js"></script>
+    <script src="./js/dragndrop.js"></script>
+    <script src="./js/templates/add_task_templates.js"></script>
+    <script src="./js/templates/add_contact_template.js"></script>
+    <script src="./js/addtask.js"></script>
+    <script src="./js/add_contact.js"></script>
+    <script src="./js/arraycontacts.js"></script>
+    <script src="./js/card_detail.js"></script>
+    <script src="./js/card_detail_edit.js"></script>
+    <script src="./js/array_user.js"></script>
+    <script src="./js/templates/board_templates.js"></script>
+    <script src="./js/templates/card_detail_templates.js"></script>
+    <script src="./js/templates/card_detail_edit_templates.js"></script>
+    <script src="./js/card_detail_edit_subtasks.js"></script>
+    <script src="./js/card_detail_edit_assignments.js"></script>
+    <title>Board</title>
+  </head>
+  <body onload="includeHTML(); initAddTask(); initBoard(); setIdOfCurrentPage(2);">
+    <header w3-include-html="./templates/header.html"></header>
+    <aside w3-include-html="./templates/menubar.html"></aside>
+
+    <main>
+      <div class="dialog d-none" id="dialog" onclick="closeDialog()">
+        <div class="dialog-content" w3-include-html="./templates/addtask.html" onclick="doNotClose(event)"></div>
+      </div>
+      <div class="title">
+        <h1>Board</h1>
+        <div class="title-right">
+          <div id="searchInputDesktop" class="position-relative"></div>
+          <button class="add-task align-center" onclick="openDialog()">Add Task <img src="./img/board/add_task.svg" alt /></button>
+          <button class="add-task-media align-center" onclick="openDialog()"><img src="./img/board/add_task.svg" alt /></button>
+        </div>
+      </div>
+      <div id="searchInputMedia" class="position-relative"></div>
+
+      <div class="grid-tasks flex-1 height-1">
+        <div class="columns" ondrop="changePosition('Todo')" ondragover="allowDrop(event)">
+          <div class="title-column">
+            <span>To do</span>
+            <button onclick="openDialog(); setPositionTask('Todo')"><img src="./img/board/plus button.svg" alt /></button>
+          </div>
+          <div id="tasksTodo" class="task-columns"></div>
+        </div>
+        <div class="columns" ondrop="changePosition('InProgress')" ondragover="allowDrop(event)">
+          <div class="title-column">
+            <span>In progress</span>
+            <button onclick="openDialog(); setPositionTask('InProgress')"><img src="./img/board/plus button.svg" alt /></button>
+          </div>
+          <div id="tasksInProgress" class="task-columns"></div>
+        </div>
+        <div class="columns" ondrop="changePosition('AwaitFeedback')" ondragover="allowDrop(event)">
+          <div class="title-column">
+            <span>Await feeback</span>
+            <button onclick="openDialog(); setPositionTask('AwaitFeedback')"><img src="./img/board/plus button.svg" alt /></button>
+          </div>
+          <div id="tasksAwaitFeedback" class="task-columns"></div>
+        </div>
+        <div class="columns" ondrop="changePosition('Done')" ondragover="allowDrop(event)">
+          <div class="title-column">
+            <span>Done</span>
+          </div>
+          <div id="tasksDone" class="task-columns"></div>
+        </div>
+      </div>
+    </main>
+    <div class="card-detail-container d-none" id="cardDetailContainer" onclick="closeCardDetail(event)"></div>
+  </body>
+</html>

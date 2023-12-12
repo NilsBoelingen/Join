@@ -1,0 +1,121 @@
+@media(max-width: 1200px) {
+    .menu-bar-main-container {
+        width: 200px;
+    }
+
+    .menu-container a {
+        padding-left: 30px;
+    }
+}
+
+@media(max-width: 970px) {
+    .menu-bar-main-container {
+        width: 100vw;
+    }
+
+    .menu-bar-main-container {
+        top: calc(100vh - 80px);
+        height: 80px;
+        width: 100vw;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .menu-bar-logo {
+        display: none;
+    }
+
+    .menu-container {
+        display: flex;
+        flex-direction: row;
+        width: calc(100% - 32px);
+        height: 100%;
+        padding: 0px 16px;
+        justify-content: space-between;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .menu-container a {
+        display: flex;
+        width: 76px;
+        height: 41px;
+        padding: 15px 0px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        flex-shrink: 0;
+        border-radius: 8px;
+    }
+
+    .policy-container {
+        display: none;
+    }
+
+    .sub-menu-main-container {
+        top: -100vh;
+        left: 0;
+    }
+
+    .sub-menu-sub-container {
+        display: inline-flex;
+        padding: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+        top: 168px;
+        right: 34px;
+    }
+
+    .sub-menu-sub-container a {
+        display: flex;
+        width: 105px;
+        height: 46px;
+        padding: 0 16px;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+    }
+}
+
+@media(max-width: 390px) {
+    #createTask {
+        width: 138px !important;
+        height: 40px !important;
+        font-size: 16px !important;
+        padding: 8px !important;
+    }
+
+    .main-buttons {
+        font-size: 12px !important;
+    }
+}
+
+@media(max-width: 380px) {
+    .menu-container {
+        padding: 0;
+        gap: 0;
+    }
+
+    .menu-container a {
+        font-size: 14px;
+    }
+
+    .menu-container a img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media(max-width: 380px) {
+    .menu-container a {
+        width: 70px;
+        height: 34px;
+    }
+
+    .menu-container a img {
+        width: 20px;
+        height: 20px;
+    }
+}

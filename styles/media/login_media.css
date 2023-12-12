@@ -1,0 +1,191 @@
+@media(max-width: 970px) {
+    body {
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .logo {
+        position: absolute;
+        top: 37px;
+        left: 38px;
+    }
+
+    .logo img {
+        width: 64px;
+        height: 78px;
+    }
+
+    .card {
+        width: 396px;
+        padding: 32px 0px;
+        position: relative;
+        top: auto;
+        left: auto;
+    }
+
+    .card-title {
+        font-size: 47px;
+        line-height: 120%;
+        padding-bottom: 16px;
+        margin-bottom: 32px;
+        margin-top: 0;
+    }
+
+    .card-title::after {
+        top: 103px;
+        width: 88px;
+    }
+
+    .log-in {
+        width: 364px;
+        height: 192px;
+    }
+
+    .input-field {
+        width: 364px;
+    }
+
+    .input-field input {
+        font-size: 20px;
+    }
+
+    .remember {
+        margin-left: 16px;
+    }
+
+    .log-in-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 21px;
+        margin-left: 20px;
+    }
+
+    .btn-log-in {
+        margin: 0;
+        display: flex;
+        width: 180px;
+        height: 51px;
+        padding: 4px 0px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn-guest {
+        display: flex;
+        width: 180px;
+        height: 51px;
+        padding: 4px 0px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .card-body {
+        padding-top: 0;
+    }
+
+    .sign-up {
+        right: auto;
+        top: auto;
+        bottom: 99px;
+    }
+
+    .footer {
+        left: auto;
+        bottom: 22px;
+    }
+}
+
+@media(max-width: 450px) {
+    .start-image {
+        width: 64px;
+        height: 78px;
+    }
+    
+    @keyframes startAnimationContainer {
+        0% {
+          transform: translate(-0%, -0%) scale(1);
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background-color: #2A3647;
+        }
+        100% {
+          transform: translate(-45%, -48%) scale(100px, 122px);
+          top: 5%;
+          left: 10%;
+          width: 64px;
+          height: 78px;
+          background-color: #F6F7F8;
+        }
+      }
+    
+      @keyframes startAnimationLogo {
+        0% {
+          transform: translate(-0%, -0%) scale(1);
+          top: 0;
+          left: 0;
+          width: 100px;
+          height: 122px;
+        }
+        100% {
+          transform: translate(-45%, -48%) scale(100px, 122px);
+          top: 5%;
+          left: 10%;
+          width: 64px;
+          height: 78px;
+        }
+      }
+}
+
+@media(max-width: 400px) {
+    body {
+        overflow: hidden;
+    }
+    .card {
+        width: 320px;
+        height: 425px;
+    }
+
+    .card-body {
+        padding-bottom: 0;
+    }
+
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .log-in {
+        width: 320px;
+    }
+
+    .input-field {
+        width: 300px;
+    }
+
+    .remember {
+        position: absolute;
+        top: 255px;
+    }
+
+    .sign-up {
+        bottom: 64px;
+    }
+
+    .log-in-buttons {
+        margin: 10px 0 0 0;
+    }
+}
+
+@media (max-width: 320px) {
+    .log-in-buttons {
+        width: 280px;
+    }
+}

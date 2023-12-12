@@ -1,0 +1,30 @@
+@media(max-width: 970px) {
+    main {
+        margin: 0;
+        padding: 120px 16px 80px 16px !important;
+    }
+
+    .main-container {
+        height: calc(100vh - 206px - 80px);
+    }
+
+    .main-container {
+        scrollbar-width: none;
+    }
+
+    .main-container::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@media(max-width: 500px) {
+    h1 {
+        font-size: 40px;
+    }
+}
+
+@media(max-width: 350px) {
+    h1 {
+        font-size: 32px;
+    }
+}

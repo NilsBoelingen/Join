@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contacts</title>
+
+    <link rel="stylesheet" href="./styles/fonts.css">
+    <link rel="stylesheet" href="./styles/header.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/menubar.css">
+    <link rel="stylesheet" href="./styles/login.css">
+    <link rel="stylesheet" href="./styles/register.css">
+    <link rel="stylesheet" href="./styles/media/main_media.css">
+    <link rel="stylesheet" href="./styles/media/header_media.css">
+    <link rel="stylesheet" href="./styles/media/login_media.css">
+    <link rel="stylesheet" href="./styles/media/register_media.css">
+    <link rel="stylesheet" href="./styles/media/menubar_media.css">
+    <link rel="stylesheet" href="./styles/contacts.css">
+    <link rel="stylesheet" href="./styles/add_contact.css">
+    <link rel="stylesheet" href="./styles/media/add_contact_media.css">
+    <link rel="stylesheet" href="./styles/media/contacts_media.css">
+
+    <script src="./js/main.js"></script>
+    <script src="./js/templates/contacts_templates.js"></script>
+    <script src="./js/templates/add_contact_template.js"></script>
+    <script src="./js/arraycontacts.js"></script>
+    <script src="./js/contacts.js"></script>
+    <script src="./js/add_contact.js"></script>
+    <script src="./js/array_user.js"></script>
+</head>
+
+<body onload="includeHTML(); init(); setIdOfCurrentPage(3);">
+    <header w3-include-html="./templates/header.html"></header>
+    <aside w3-include-html="./templates/menubar.html"></aside>
+
+    <main>
+        <div id="contacts" class="contacts">
+            <div class="add-new-contact">
+                <button id="btn-add-new-cont" onclick="addNewContact()" class="btn btn-add-new-cont">Add new contact 
+                    <img src="./img/contact/person_add.png">
+                </button>
+                <button id="btn-add-new-cont-mobil" onclick="addNewContact()" class="btn btn-add-new-cont-mobil">
+                    <img src="./img/contact/person_add.png">
+                </button>
+            </div>
+            <div id="contact-list" class="contact-list">
+            </div>
+        </div>
+        <div id="bg-message" class="bg-message d-none">
+            <div id="add-new-contact" class="show-add-new-contact">
+            </div>
+        </div>
+        <div id="headline" class="headline">
+            <h2>Contacts</h2>
+            <span>Better with a team</span>
+            <img class="underline" src="img/add_new_contact/underline.svg">
+        </div>
+        <div id="show-contact" class="show-contact d-none">
+            <div id="name" class="show-cont-name">
+            </div>
+            <div onclick="backToContactlist()" class="btn-back"> 
+                <img src="./img/contact/back.svg">
+            </div>
+            <div class="contact-info">
+                <span>Contact Information</span>
+            </div>
+            <div id="info" class="info">
+            </div>
+            <div id="bg-cont-function" onclick="hideContFunction()" class="bg-cont-function d-none">
+            </div>
+            <div id="create-new-contact" class="create-new-contact d-none">
+                <span>Contact succesfully created</span>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

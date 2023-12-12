@@ -1,0 +1,99 @@
+<div class="size100" onclick="closeContactList()">
+  <div class="close-dialog d-none" id="closeDialog" onclick="closeDialog()">
+    <img src="../img/add_task/close.png" />
+  </div>
+  <div id="bg-message" class="bg-message d-none">
+    <div class="bg-background">
+      <div id="add-new-contact" class="show-add-new-contact"></div>
+      <div id="create-new-contact" class="create-new-contact d-none">
+        <span>Contact succesfully created</span>
+      </div>
+    </div>
+  </div>
+  <h1 class="headline">Add Task</h1>
+  <div class="main-container">
+    <div class="dialog-succes-background d-none" id="dialogSucces">
+      <div class="dialog-succes">
+        <div class="dialog-succes-text">Task added to board</div>
+        <img src="../img/add_task/Vector.png" />
+      </div>
+    </div>
+    <form onsubmit="createNewTask(); return false">
+      <div class="sub-container">
+        <div class="left-container">
+          <div class="titel">
+            <div>Title<span>*</span></div>
+            <input type="text" required minlength="3" placeholder="Enter a title" id="inputTitel" />
+          </div>
+          <div class="description">
+            <div>Description</div>
+            <textarea class="description-input" name id="inputDescription" placeholder="Enter a Description"></textarea>
+          </div>
+          <div class="assigned-to">
+            <div>Assigned to</div>
+            <div id="contactList" class="contact-list">
+              <img src="./img/add_task/arrow_drop_down.png" id="openContactsDropDown" onclick="openContactList(); doNotTriggerEvent(event)" />
+              <input type="text" id="contactInput" placeholder="Select contacts to assign" onclick="openContactList(); doNotTriggerEvent(event)" oninput="searchContactToAssign()" onfocus="openContactList()" />
+              <div id="contactsDropDown"></div>
+              <button id="addContact" type="button" onclick="addNewContact(); changeBtnColor()">Add new contact<img src="../img/add_task/person_add.png" /></button>
+            </div>
+            <div id="contactInitialIcons"></div>
+          </div>
+        </div>
+        <div class="parting-line"></div>
+        <div class="right-container">
+          <div class="due-date">
+            <div>Due date<span>*</span></div>
+            <input type="date" required data-date data-date-format="DD/MM/YYYY" id="inputDate" min="2000-01-01" max="2200-12-31" />
+          </div>
+          <div class="prio">
+            <div>Prio</div>
+            <div class="prio-button-container">
+              <button type="button" id="urgent" onclick="activePrioButton('urgent')">Urgent<img src="../img/add_task/urgent.png" /></button>
+              <button type="button" id="medium" onclick="activePrioButton('medium')">Medium<img src="../img/add_task/medium.png" /></button>
+              <button type="button" id="low" onclick="activePrioButton('low')">Low<img src="../img/add_task/low.png" /></button>
+            </div>
+          </div>
+          <div class="choose-category position-relative">
+            <div>Category<span>*</span></div>
+            <div class="select-category-container">
+              <div class="input-category position-relative">
+                <input type="text" id="selectCategory" class="select-category" onclick="showDropDownCategory()" onblur="hideDropDownCategory()" required pattern="Technical Task|User Story" placeholder="Select task category" title="Technical Task oder User Story" autocomplete="off"/>
+                <img src="../img/add_task/arrow_drop_down.png" alt="" id="arrowDrowpDown" class="cursor-pointer" onclick="toggleDropDownCategory()">
+              </div>
+
+              <div id="selectCategoryOptions" class="select-category-options d-none">
+                <p onclick="setCategory('Technical Task')">Technical Task</p>
+                <p onclick="setCategory('User Story')">User Story</p>
+              </div>
+            </div>
+          </div>
+          <div class="subtasks">
+            <div>Subtasks</div>
+            <div class="input-group">
+              <input type="text" placeholder="Add new subtask" id="inputSubTask" onfocus="activateSubtask()" onfocusout="leaveSubTaskInput()" onkeydown="handleEnter(event)" />
+              <div class="input-group-buttons">
+                <button class="d-none" type="button" id="inputSubTaskIcon1" onclick="clearSubTaskInput()"><img src="../img/add_task/close.png" /></button>
+                <div class="parting-line-buttons d-none" id="partingLineButtons"></div>
+                <button id="inputSubTaskIcon2" type="button" onclick="activateSubtask()"><img src="../img/add_task/add.png" /></button>
+              </div>
+            </div>
+            <ul id="showSubtasks"></ul>
+          </div>
+        </div>
+      </div>
+      <div class="main-buttons">
+        <div><span>*</span>This Field is required</div>
+        <div class="main-buttons-sub">
+          <button type="button" id="cancelCreateTask" onclick="clearAll()">
+            Clear
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.0692 12.0001L17.3122 17.2431M6.82617 17.2431L12.0692 12.0001L6.82617 17.2431ZM17.3122 6.75708L12.0682 12.0001L17.3122 6.75708ZM12.0682 12.0001L6.82617 6.75708L12.0682 12.0001Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <button id="createTask" type="submit">Create Task <img src="../img/add_task/check2.png" /></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

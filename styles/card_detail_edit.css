@@ -1,0 +1,364 @@
+.d-flex {
+  display: flex;
+}
+
+.left-50-percent {
+  left: 50%;
+}
+
+.min-height-120 {
+  min-height: 120px;
+}
+
+.align-stretch {
+  align-self: stretch;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.card-edit-scroll {
+  height: 697px;
+  overflow-y: auto;
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.card-edit-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+  padding-right: 8px;
+}
+
+.subtitle {
+  color: #2a3647;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 24px */
+}
+
+.subtitle textarea {
+  resize: vertical;
+}
+
+.card-edit-section-input {
+  display: flex;
+  padding: 12px 21px;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  background: #fff;
+  margin-bottom: 12px;
+  justify-content: space-between;
+}
+
+.card-edit-section-input:focus {
+  border-color: #29abe2;
+}
+
+.card-edit-section-input::placeholder {
+  color: black;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.card-edit-section input:focus {
+  outline: none;
+}
+
+.card-edit-task {
+  min-height: 120px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.card-edit-task:focus {
+  border-color: #29abe2;
+  outline: none;
+}
+
+.font-size-19 {
+  color: black;
+  font-family: Open Sans;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.font-size-20 {
+  color: black;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.card-edit-priority {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  margin-bottom: 12px;
+}
+
+.card-edit-priority-btn {
+  display: flex;
+  padding: 16px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  color: #000;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.card-edit-priority-btn:hover {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card-edit-priority-color-white {
+  color: #fff;
+  font-family: Inter;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+.open-dropdown-assign {
+  position: absolute;
+  top: 46px;
+  right: 28px;
+  cursor: pointer;
+}
+
+.add-subtask::placeholder {
+  color: #d1d1d1;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.card-edit-members {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.drop-down-assigned-to {
+  position: absolute;
+  top: 83px;
+  left: 0;
+  width: 429px;
+  max-height: 336px;
+  background: white;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+  overflow-y: scroll;
+  z-index: 999;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.contact:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.background-color-dark {
+  background-color: #091931;
+}
+
+.font-color-white {
+  color: white;
+}
+
+.background-color-dark:hover {
+  background-color: #2a3647;
+}
+
+.addDeleteSubtask {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  position: absolute;
+  top: 14px;
+  right: 12px;
+  background-color: white;
+}
+
+.hover-gray-circle:hover {
+  cursor: pointer;
+  background-color: #d1d1d1;
+  border-radius: 50%;
+}
+
+.subtasks-list {
+  display: list-item;
+  align-self: stretch;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.subtasks-list li {
+  position: relative;
+  padding: 6px 16px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  border-radius: 10px;
+  color: #000;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  cursor: pointer;
+  border: none;
+}
+
+.subtasks-list li::before {
+  content: '\2022'; /* Unicode für den Bullet-Point */
+  color: black;
+  font-size: 1.5em;
+  margin-right: 10px;
+}
+
+.subtasks-list li:hover {
+  background-color: #d1d1d1;
+}
+
+.subtasks-list li:hover .edit-delete-subtasks {
+  display: flex;
+}
+
+.subtask-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.edit-delete-subtasks {
+  display: none;
+}
+
+.subtask-text {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  max-width: 280px;
+}
+
+.subtask-item-focused {
+  display: flex;
+  padding: 4px 16px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #29abe2;
+  background: white;
+}
+
+.no-hover:hover {
+  background-color: white;
+}
+
+.edit-delete-subtask {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.subtask-item-focused input {
+  border: none;
+  color: #000;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  width: 100%;
+  padding-right: 20px;
+}
+
+.confirm-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.confirm-button {
+  display: flex;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 10px;
+  background: #2a3647;
+  cursor: pointer;
+  border: none;
+}
+
+.confirm-button:hover {
+  border-radius: 8px;
+  background: #29abe2;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: none;
+}
+
+.confirm-button p {
+  color: #fff;
+  font-family: Inter;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  margin: 0;
+}
+
+.confirm-button img {
+  width: 24px;
+  height: 24px;
+}

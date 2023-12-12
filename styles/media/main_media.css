@@ -1,0 +1,17 @@
+@media (max-width: 1200px) {
+    main {
+      margin-left: 200px;
+    }
+    .policy-container {
+        width: 200px;
+    }
+    .policy-container a {
+        padding: 8px 30px;
+    }
+  }
+
+  @media (max-width: 970px) {
+    main {
+      margin-left: 0;
+    }
+  }

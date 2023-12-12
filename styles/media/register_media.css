@@ -1,0 +1,128 @@
+@media(max-width: 970px) {
+    .card {
+        display: flex;
+        width: 396px;
+        padding: 32px 0px;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        top: auto;
+        left: auto;
+    }
+
+    .card-body {
+        position: relative;
+        padding: 0;
+    }
+
+    .card-title {
+        margin-bottom: 24px;
+    }
+
+    .card-title::after {
+        top: 71px;
+    }
+
+    .btn-close {
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        top: 8px;
+        left: 24px;
+    }
+
+    .input-container {
+        width: 364px;
+        height: 392px;
+        gap: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .input-field {
+        width: 364px;
+        height: 50px;
+        position: relative;
+        margin-bottom: 0;
+        gap: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .input-field input {
+        width: 364px;
+        height: 50px;
+        display: flex;
+        padding: 13px 21px;
+        align-items: center;
+        gap: 10px;
+        align-self: stretch;
+    }
+
+    .input-field .icon {
+        margin: 0 !important;
+        transform: none;
+        right: 21px;
+        top: 13px;
+    }
+
+    .remember {
+        margin: 0;
+    }
+
+    .btn-sign-up {
+        display: flex;
+        width: 180px;
+        height: 51px;
+        padding: 4px 0px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+@media(max-width: 400px) {
+    .btn-close {
+        top: -15px;
+        left: 15px;
+    }
+
+    .card {
+        width: 320px;
+        height: 465px;
+        top: 25px;
+    }
+
+    .card-title {
+        font-size: 35px;
+    }
+
+    .card-title::after {
+        top: 55px;
+    }
+
+    .input-container {
+        width: 300px;
+        height: 280px;
+    }
+
+    .input-field {
+        width: 300px;
+        height: 35px;
+    }
+
+    .input-field input {
+        width: 300px;
+        height: 35px;
+    }
+
+    .input-field .icon {
+        top: 8px;
+    }
+
+    .remember {
+        top: 310px;
+    }
+}

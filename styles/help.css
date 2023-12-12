@@ -1,0 +1,79 @@
+main {
+    padding: 206px 96px 0 96px !important;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+
+}
+
+span {
+    color: #29ABE2;
+}
+
+h1 {
+    margin: 0 !important;
+    line-height: 120% !important;
+}
+
+h2 {
+    font-weight: 700 !important;
+    color: black !important;
+}
+
+ol {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+}
+
+ol li {
+    display: flex;
+    align-items: flex-start;
+    gap: 35px;
+    align-self: stretch;
+}
+
+ol h2 {
+    margin: 0;
+}
+
+.stretch {
+    display: flow;
+    align-self: stretch;
+}
+
+.main-container {
+    display: flex;
+    max-width: 1014px;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    position: relative;
+}
+
+.how-to-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+}
+
+#helpUpperArrowBack {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    position: absolute;
+    top: 16px;
+    right: 0;
+    cursor: pointer;
+}
+
+#helpUpperArrowBack rect:hover {
+    fill: #EEEEEE;
+}

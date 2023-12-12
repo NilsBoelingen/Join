@@ -1,0 +1,50 @@
+main {
+    padding: 206px 96px 0 96px !important;
+    font-family: Inter !important;
+    font-size: 16px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 120% !important;
+    overflow: auto;
+}
+
+h1 {
+    margin: 0 !important;
+    line-height: 120% !important;
+    margin-block-end: 32px !important;
+}
+
+h2 {
+    margin: 0 !important;
+    font-family: Inter !important;
+    font-size: 27px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 120% !important;
+    color: black !important;
+}
+
+.main-container {
+    position: relative;
+    display: flex;
+    max-width: 1014px;
+    width: 100%;
+    height: calc(100vh - 206px - 40px);
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+#legalNoticeUpperArrowBack {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    position: absolute;
+    top: 16px;
+    right: 0;
+    cursor: pointer;
+}
+
+#legalNoticeUpperArrowBack rect:hover {
+    fill: #EEEEEE;
+}

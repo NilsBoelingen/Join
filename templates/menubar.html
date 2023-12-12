@@ -1,0 +1,35 @@
+<div class="menu-bar-main-container" id="menuBarMainContainer">
+    <img src="../img/menubar/logo.png" alt="Logo" class="menu-bar-logo">
+    <div class="menu-container" id="menuContainer">
+        <a href="../summary.html" id="summary" class="menu-hover current">
+            <img src="./img/menubar/summary.png" alt="Icon">
+            Summary
+        </a>
+        <a href="../addtask.html" id="addTask" class="menu-hover current">
+            <img src="./img/menubar/add_task.png" alt="Icon">
+            Add Task
+        </a>
+        <a href="../board.html" id="board" class="menu-hover current">
+            <img src="./img/menubar/board.png" alt="Icon">
+            Board
+        </a>
+        <a href="../contacts.html" id="contacts" class="menu-hover current">
+            <img src="./img/menubar/contacts.png" alt="Icon">
+            Contacts
+        </a>
+    </div>
+    <div class="policy-container">
+        <a href="../privacypolicy.html" id="privacypolicy">Privacy Policy</a>
+        <a href="../legalnotice.html" id="legalnotice">Legal Notice</a>
+    </div>
+    <div id="subMenu" class="d-none sub-menu-main-container" onclick="closeSubMenu()">
+        <div class="sub-menu-sub-container">
+            <a href="../legalnotice.html">Legal Notice</a>
+            <a href="../privacypolicy.html">Privacy Policy</a>
+            <a href="#" onclick="logOut()">Log out</a>
+        </div>
+    </div>
+</div>
+<script>
+    highlightCurrentPageLink();
+</script>

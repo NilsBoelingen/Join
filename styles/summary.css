@@ -1,0 +1,159 @@
+.content {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  padding-bottom: 64px;
+}
+
+#greetingContainer {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3px;
+}
+
+#greetingContainer p {
+  margin: 0;
+}
+
+.welcome-text {
+  font-size: 47px;
+  font-weight: 400;
+  line-height: 56.4px;
+  color: #2a3647;
+}
+
+.user-name {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 76.8px;
+  color: #29abe2;
+}
+
+.summary-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 560px;
+}
+
+.summary {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 30px;
+  transition: 125ms ease-in-out;
+  height: 168px;
+  cursor: pointer;
+}
+
+.card-top {
+  gap: 18px;
+  width: 264px;
+}
+
+.card-top:hover,
+.card-middle:hover,
+.card-bottom:hover {
+  background-color: #2a3647;
+  color: white;
+  transition: 125ms ease-in-out;
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-top:hover {
+  transform: scale(1.05);
+}
+
+.card-middle:hover {
+  transform: scale(1.03);
+}
+
+.card-bottom:hover {
+  transform: scale(1.09);
+}
+
+.card-top:hover .card-text,
+.card-middle:hover .card-text-date,
+.card-middle:hover .card-text-deadline,
+.card-middle:hover .card-text-urgent,
+.card-bottom:hover .card-text {
+  color: white;
+}
+
+.card-middle {
+  display: flex;
+  width: 560px;
+  gap: 61px;
+  margin: 28px 0;
+}
+
+.card-bottom {
+  flex-direction: column;
+  width: 168px;
+}
+
+.card-number {
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 76.8px;
+  text-align: center;
+}
+
+.card-text {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  color: #2a3647;
+}
+
+.card-text-urgent {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  text-align: center;
+  color: #2a3647;
+}
+
+.separator-urgent-date {
+  height: 67%;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  color: #2a3647;
+}
+
+.card-text-date {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 25.2px;
+}
+
+.card-text-deadline {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+}
+
+.urgent-counter {
+  display: flex;
+  gap: 18px;
+}
+
+.blue-line {
+  display: none;
+}

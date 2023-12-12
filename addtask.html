@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Task</title>
+    <link rel="stylesheet" href="./styles/fonts.css" />
+    <link rel="stylesheet" href="./styles/header.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/menubar.css" />
+    <link rel="stylesheet" href="./styles/media/header_media.css">
+    <link rel="stylesheet" href="./styles/media/menubar_media.css">
+    <link rel="stylesheet" href="./styles/addtask.css" />
+    <link rel="stylesheet" href="./styles/add_contact.css" />
+    <link rel="stylesheet" href="./styles/media/main_media.css" />
+    <link rel="stylesheet" href="./styles/media/addtask_media.css" />
+    <link rel="stylesheet" href="./styles/media/add_contact_media.css">
+    <script src="./js/arraycontacts.js"></script>
+    <script src="./js/addtask.js"></script>
+    <script src="./js/templates/add_task_templates.js"></script>
+    <script src="./js/templates/add_contact_template.js"></script>
+    <script src="./js/data_tasks.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/array_user.js"></script>
+    <script src="./js/add_contact.js"></script>
+  </head>
+  <body onload="includeHTML(); initAddTask(); setIdOfCurrentPage(1)">
+    <header w3-include-html="./templates/header.html"></header>
+    <aside w3-include-html="./templates/menubar.html"></aside>
+    <main w3-include-html="./templates/addtask.html" id="test"></main>
+  </body>
+</html>

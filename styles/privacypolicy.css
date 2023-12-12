@@ -1,0 +1,66 @@
+main {
+    padding: 206px 96px 0 96px !important;
+    font-family: Inter !important;
+    font-size: 16px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 120% !important;
+    overflow: auto;
+}
+
+h1 {
+    margin: 0 !important;
+    line-height: 120% !important;
+}
+
+h2 {
+    margin: 0 !important;
+    font-family: Inter !important;
+    font-size: 27px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 120% !important;
+    color: black !important;
+}
+
+span {
+    color: #29ABE2;
+}
+
+.main-container {
+    max-width: 1014px;
+    position: relative;
+    height: calc(100vh - 206px - 40px);
+}
+
+.sub-container {
+    margin-top: 32px;
+    display: flex;
+    max-width: 1014px;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    gap: 24px;
+}
+
+.imprint {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+#privacyPolicyUpperArrowBack {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    position: absolute;
+    top: 16px;
+    right: 0;
+    cursor: pointer;
+}
+
+#privacyPolicyUpperArrowBack rect:hover {
+    fill: #EEEEEE;
+}
