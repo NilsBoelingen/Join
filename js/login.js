@@ -3,8 +3,8 @@
  * Also, shows the login/signup elements after a delay.
  */
 async function init() {
-    await getUsers();
-    await getCurrentUser();
+    // await getUsers();
+    // await getCurrentUser();
     await getContacts();
     // startImage();
     showLogIn();
@@ -14,8 +14,8 @@ async function init() {
  * This function initializes the login process by fetching users and the current user.
  */
 async function initLogin() {
-    await getUsers();
-    await getCurrentUser();
+    // await getUsers();
+    // await getCurrentUser();
     await getContacts();
 }
 
@@ -55,22 +55,36 @@ async function logIn() {
         if (password.length <= 3) {
             alert('Bitte Passwort eingeben');
         } else {
-            if (checkUser(i, email)) {
-                if (checkPasswort(i, password)) {
-                    currentUser = users[i].id;
-                    await setCurrentUser(users[i].id);
-                    await actuallyUserToContacts();
-                    window.location.href = 'summary.html';
-                } else {
-                    errorMessagePassword.innerHTML = 'Password incorrect';
-                    errorMessage.style.gap = "5px";
-                }
-            } else {
-                errorMessageEmail.innerHTML = 'Email incorrect or not available';
-                errorMessage.style.gap = "5px";
-            }
+            tryLogIn(email, password);
+            // if (checkUser(i, email)) {
+            //     if (checkPasswort(i, password)) {
+            //         currentUser = users[i].id;
+            //         await setCurrentUser(users[i].id);
+            //         await actuallyUserToContacts();
+            //         window.location.href = 'summary.html';
+            //     } else {
+            //         errorMessagePassword.innerHTML = 'Password incorrect';
+            //         errorMessage.style.gap = "5px";
+            //     }
+            // } else {
+            //     errorMessageEmail.innerHTML = 'Email incorrect or not available';
+            //     errorMessage.style.gap = "5px";
+            // }
         }
     }
+}
+
+async function tryLogIn(email, password) {
+    const url = 'http://127.0.0.1:8000/api/auth/login/';
+    const body = {
+        'email': email,
+        'password': password
+    }
+    await fetch(url, {method: 'POST', body: JSON.stringify(body)}).then(res => {
+        res.json()
+        console.log(res);
+        
+    })
 }
 
 /**
