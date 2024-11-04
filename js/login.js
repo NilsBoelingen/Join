@@ -80,7 +80,8 @@ async function tryLogIn(email, password) {
         'email': email,
         'password': password
     }
-    await fetch(url, {method: 'POST', body: JSON.stringify(body)}).then(res => {
+    const header = new Headers({ 'Content-Type': 'application/json' })
+    await fetch(url, {method: 'POST', body: JSON.stringify(body), headers: header}).then(res => {
         res.json()
         console.log(res);
         
