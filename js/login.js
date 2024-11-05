@@ -55,7 +55,26 @@ async function logIn() {
         if (password.length <= 3) {
             alert('Bitte Passwort eingeben');
         } else {
-            tryLogIn(email, password);
+            const data = await tryLogIn(email, password);
+            if (data) {
+                localStorage.setItem('seesion', JSON.stringify(data));
+                window.location.href ='summary.html';                
+            }
+            // .then(() => {
+                                
+                // if (res) {
+                //     console.log(res.json());
+                //     currentUser = res.data.id;
+                //     actuallyUserToContacts().then(() => {
+                //         localStorage.setItem('session', res.data.json())
+                //         // window.location.href ='summary.html';
+
+                //     });
+                // } else {
+                //     errorMessage.innerHTML = res.message;
+                //     errorMessage.style.gap = "5px";
+                // }
+            // });
             // if (checkUser(i, email)) {
             //     if (checkPasswort(i, password)) {
             //         currentUser = users[i].id;
@@ -80,12 +99,18 @@ async function tryLogIn(email, password) {
         'email': email,
         'password': password
     }
-    const header = new Headers({ 'Content-Type': 'application/json' })
-    await fetch(url, {method: 'POST', body: JSON.stringify(body), headers: header}).then(res => {
-        res.json()
-        console.log(res);
-        
-    })
+    const header = new Headers({ 'Content-Type': 'application/json' });
+    const options = {
+        method: 'POST',
+        headers: header,
+        body: JSON.stringify(body)
+    };
+    const res = await fetch(url, options);
+    if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    const data = await res.json();
+    return data;    
 }
 
 /**
