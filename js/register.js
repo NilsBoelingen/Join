@@ -67,7 +67,6 @@ async function tryRegisterUser(body) {
     });
 }
 
-
 /**
  * This function generates and returns a random color from a predefined set of colors.
  * 

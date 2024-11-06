@@ -3,10 +3,6 @@
  * Also, shows the login/signup elements after a delay.
  */
 async function init() {
-    // await getUsers();
-    // await getCurrentUser();
-    await getContacts();
-    // startImage();
     showLogIn();
 }
 
@@ -14,9 +10,7 @@ async function init() {
  * This function initializes the login process by fetching users and the current user.
  */
 async function initLogin() {
-    // await getUsers();
-    // await getCurrentUser();
-    await getContacts();
+
 }
 
 /**
@@ -44,10 +38,6 @@ function signUp() {
 async function logIn() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
-    let errorMessage = document.getElementById('error-message');
-    let errorMessageEmail = document.getElementById('error-message-email');
-    let errorMessagePassword = document.getElementById('error-message-password');
-    let i = getIndexOfUser(email);
 
     if (email.length <= 3) {
         alert('Bitte Email eingeben');
@@ -57,60 +47,70 @@ async function logIn() {
         } else {
             const data = await tryLogIn(email, password);
             if (data) {
-                localStorage.setItem('seesion', JSON.stringify(data));
+                setToLocalStorage(data);
                 window.location.href ='summary.html';                
             }
-            // .then(() => {
-                                
-                // if (res) {
-                //     console.log(res.json());
-                //     currentUser = res.data.id;
-                //     actuallyUserToContacts().then(() => {
-                //         localStorage.setItem('session', res.data.json())
-                //         // window.location.href ='summary.html';
-
-                //     });
-                // } else {
-                //     errorMessage.innerHTML = res.message;
-                //     errorMessage.style.gap = "5px";
-                // }
-            // });
-            // if (checkUser(i, email)) {
-            //     if (checkPasswort(i, password)) {
-            //         currentUser = users[i].id;
-            //         await setCurrentUser(users[i].id);
-            //         await actuallyUserToContacts();
-            //         window.location.href = 'summary.html';
-            //     } else {
-            //         errorMessagePassword.innerHTML = 'Password incorrect';
-            //         errorMessage.style.gap = "5px";
-            //     }
-            // } else {
-            //     errorMessageEmail.innerHTML = 'Email incorrect or not available';
-            //     errorMessage.style.gap = "5px";
-            // }
         }
     }
 }
 
+function setToLocalStorage(data) {
+    let remember = document.getElementById('remember');
+    if (remember.checked) {
+        localStorage.setItem('seesion', JSON.stringify(data));
+    } else {
+        sessionStorage.setItem('seesion', JSON.stringify(data));
+    }
+}
+
 async function tryLogIn(email, password) {
-    const url = 'http://127.0.0.1:8000/api/auth/login/';
-    const body = {
-        'email': email,
-        'password': password
+    try {
+        const url = 'http://127.0.0.1:8000/api/auth/login/';
+        const body = {
+            'email': email,
+            'password': password
+        }
+        const header = new Headers({ 'Content-Type': 'application/json' });
+        const options = {
+            method: 'POST',
+            headers: header,
+            body: JSON.stringify(body)
+        };
+        const res = await fetch(url, options);
+        if (!res.ok) {
+            handleLoginError(res);
+            return;
+        }
+        const data = await res.json();
+        return data;
+    } catch (e) {
+        handleLoginError(e);
     }
-    const header = new Headers({ 'Content-Type': 'application/json' });
-    const options = {
-        method: 'POST',
-        headers: header,
-        body: JSON.stringify(body)
-    };
-    const res = await fetch(url, options);
-    if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
+}
+
+async function handleLoginError(error) {
+    let errorMessageContainer = document.getElementById('login-message-container');
+    let errorMessage = document.getElementById('login-message');
+    
+    if (error.status === 401) {
+        let message = await error.json();
+        errorMessageContainer.classList.remove('d-none');
+        errorMessage.innerHTML = message.error;
+        setTimeout(() => {
+            errorMessageContainer.classList.add('d-none');
+        }, 1000);
+        return;
     }
-    const data = await res.json();
-    return data;    
+    if (error.status === 500) {
+        let message = await error.json();
+        errorMessageContainer.classList.remove('d-none');
+        errorMessage.innerHTML = message.error;
+        setTimeout(() => {
+            errorMessageContainer.classList.add('d-none');
+        }, 1000);
+        return;
+    }
+
 }
 
 /**
