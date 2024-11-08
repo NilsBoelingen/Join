@@ -104,7 +104,7 @@ function createNewContact() {
     firstname: firstname,
     lastname: lastname,
     email: emailInput.value,
-    "phone-number": phoneInput.value,
+    phonenumber: +phoneInput.value
   };
   if (idOfCurrentPage == 3) {
     pushNewContact(newContact);
@@ -126,7 +126,7 @@ function createNewContact() {
  */
 async function pushNewContact(newContact) {
   contacts.push(newContact);
-  await setContacts();
+  await setContact(newContact);
   loadContactList();
   createNewContactMessage();
   setTimeout(() => {
@@ -140,9 +140,9 @@ async function pushNewContact(newContact) {
  * 
  * @param {object} newContact - Contains the values of the new contact.
  */
-function pushNewContactAddTask(newContact) {
+async function pushNewContactAddTask(newContact) {
   contacts.push(newContact);
-  setContacts();
+  await setContact(newContact);
   selectedContacts.push(newContact.id);
   createNewContactMessage();
   loadContactsToAssign();

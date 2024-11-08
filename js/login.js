@@ -57,9 +57,9 @@ async function logIn() {
 function setToLocalStorage(data) {
     let remember = document.getElementById('remember');
     if (remember.checked) {
-        localStorage.setItem('seesion', JSON.stringify(data));
+        localStorage.setItem('session', JSON.stringify(data));
     } else {
-        sessionStorage.setItem('seesion', JSON.stringify(data));
+        sessionStorage.setItem('session', JSON.stringify(data));
     }
 }
 

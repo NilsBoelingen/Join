@@ -5,6 +5,19 @@ const STORAGE_TOKEN = 'RPU0FT0UVM1WMXF2YVD579M9QJN3HJWKW84Z2NEB';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 let currentUser;
 let userContactId;
+const local = JSON.parse(localStorage.getItem('session'));
+const session = JSON.parse(sessionStorage.getItem('session'));
+let token;
+let curentUserId;   
+if (local) {
+    token = local.token;
+    curentUserId = local.id;       
+}
+if (session) {
+    token = session.token;
+    curentUserId = session.id;       
+}
+const authHeader = new Headers({ 'Content-Type': 'application/json', 'Authorization': `Token ${token}` });
 
 
 /**
@@ -60,8 +73,22 @@ function setUsers() {
  * This function safes the Contacts on the Server.
  * 
  */
-function setContacts() {
-    setItem('contacts', contacts);
+async function setContact(contact) {
+    const url = 'http://127.0.0.1:8000/api/join/contacts/';
+    const payload = {
+        'firstname': contact.firstname,
+        'lastname': contact.lastname,
+        'email': contact.email,
+        'icon': contact.icon,
+        'phonenumber': contact.phonenumber
+    }
+    const options = {
+        method: 'POST',
+        headers: authHeader,
+        body: JSON.stringify(payload)
+    }
+    await fetch(url, options);
+    // setItem('contacts', contacts);
 }
 
 /**
@@ -69,6 +96,7 @@ function setContacts() {
  * 
  */
 async function setCurrentUser(id) {
+    sessionStorage.setItem('currentUser', id);
     return setItem('currentUser', id);
 }
 
@@ -97,8 +125,20 @@ async function getUsers() {
  * 
  */
 async function getCurrentUser() {
-    let data = await getItem('currentUser');
-    currentUser = data.data.value;
+    const url = `http://127.0.0.1:8000/api/join/user/${curentUserId}`;
+    const options = {
+        method: 'GET',
+        headers: authHeader
+    }
+    let response = await fetch(url, options);
+    if (!response.ok) {
+        console.log('Error:', result.status);
+        return;
+    }
+    let userRes = await response.json();
+    currentUser = userRes;
+    // let data = await getItem('currentUser');
+    // currentUser = data.data.value;
 }
 
 /**
@@ -106,9 +146,22 @@ async function getCurrentUser() {
  * 
  */
 async function getContacts() {
-    let data = await getItem('contacts');
-    let asJson = data.data.value;
-    contacts = JSON.parse(asJson);
+    const url = 'http://127.0.0.1:8000/api/join/contacts/'
+    
+    const options = {
+        method: 'GET',
+        headers: authHeader
+    }
+    let result = await fetch(url, options);
+    if (!result.ok) {
+        console.log('Error:', result.status);
+        return;
+    }   
+    let contactsRes = await result.json();
+    contacts = contactsRes;        
+    // let data = await getItem('contacts');
+    // let asJson = data.data.value;
+    // contacts = JSON.parse(asJson);
 }
 
 /**
@@ -185,7 +238,11 @@ function resetHighlight() {
 function getUserInitials(user) {
     const firstnameInitial = user.firstname.charAt(0).toUpperCase();
     const lastnameInitial = user.lastname.charAt(0).toUpperCase();
-    return firstnameInitial + lastnameInitial;
+    if (firstnameInitial && lastnameInitial) {
+        return firstnameInitial + lastnameInitial;
+    } else {
+        return user.username.charAt(0).toUpperCase();
+    }
 }
 
 /**
@@ -237,11 +294,18 @@ function getIndexOf(array, key, x) {
 function createHeaderInitials() {
     try {
         let userInitials = document.getElementById('userInitials');
-        let i = getIndexOf(users, 'id', currentUser);
-        let nameParts = users[i].name.split(' ');
-        let lastname = nameParts.pop() || '';
-        let firstname = nameParts.join(' ') || '';
-        userInitials.innerText = `${firstname.charAt(0)}${lastname.charAt(0)}`;
+        // let i = getIndexOf(users, 'id', currentUser);
+        // let nameParts = users[i].name.split(' ');
+        let nameParts = currentUser.username.split(' ');
+        if (nameParts.length > 1) {
+            let lastname = nameParts.pop() || '';
+            let firstname = nameParts.join(' ') || '';
+            userInitials.innerText = `${firstname.charAt(0).toUpperCase()}${lastname.charAt(0).toUpperCase()}`;
+        } else if (nameParts.length < 1) {
+            userInitials.innerHTML = '?';
+        } else {
+            userInitials.innerText = currentUser.username.charAt(0).toUpperCase();
+        }
     } catch (e) { }
 }
 
