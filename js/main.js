@@ -164,6 +164,21 @@ async function getContacts() {
     // contacts = JSON.parse(asJson);
 }
 
+async function getSummaryData() {
+    const url = 'http://127.0.0.1:8000/api/join/summary/';
+    const options = {
+        method: 'GET',
+        headers: authHeader
+    }
+    let result = await fetch(url, options);
+    if (!result.ok) {
+        console.log('Error:', result.status);
+        return;
+    }
+    let summaryRes = await result.json();
+    summaryData = summaryRes;
+}
+
 /**
  * This function is used to including template HTML to other Pages.
  * 

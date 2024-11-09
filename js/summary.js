@@ -1,17 +1,22 @@
 let idOfUser = 1;
+let summaryData;
 
 /**
  * This function contains all the functionts that should be called on load of the body.
  */
 async function init() {
   await getTasks();
-  await getUsers();
+  // await getUsers();
   await getCurrentUser();
+  await getSummaryData();
   getTimeOfDay();
   setAmountTasksPosition();
   setTotalTasks();
   setAmountUrgent();
   setDeadline();
+  setDoneTasks();
+  setTasksInProgress();
+  tasksAwaitFeedback();
   createHeaderInitials();
 }
 
@@ -79,9 +84,9 @@ function setAmountTasksPosition() {
   for (let i = 0; i < columns.length; i++) {
     let position = columns[i];
     let amountContainer = document.getElementById(`amountTasks${position}`);
-    let amountOfTasks = countTasks(position);
+    // let amountOfTasks = countTasks(position);
 
-    amountContainer.innerHTML = `${amountOfTasks}`;
+    amountContainer.innerHTML = `${summaryData.todo_count}`;
   }
 }
 
@@ -91,24 +96,24 @@ function setAmountTasksPosition() {
  * @param {string} position - The positions are stored in the array columns in data.tasks.js
  * @returns {number} - Number of tasks in the position, for example "Todo".
  */
-function countTasks(position) {
-  return dataTasks.filter((task) => task.position === position).length;
-}
+// function countTasks(position) {
+//   return dataTasks.filter((task) => task.position === position).length;
+// }
 
 /**
  * This function counts the total amount of tasks in the array dataTasks in data_tasks.js. It then writes this number into the corresponding div.
  */
 function setTotalTasks() {
-  const amountTotalTasks = dataTasks.length;
-  document.getElementById("totalTasks").innerHTML = `${amountTotalTasks}`;
+  // const amountTotalTasks = dataTasks.length;
+  document.getElementById("totalTasks").innerHTML = `${summaryData.total_count}`;
 }
 
 /**
  * This function counts the amount of tasks set to "urgent". It then write this number into the corresponding div.
  */
 function setAmountUrgent() {
-  let amountUrgent = dataTasks.filter((task) => task.urgency === "urgent").length;
-  document.getElementById("amountUrgent").innerHTML = `${amountUrgent}`;
+  // let amountUrgent = dataTasks.filter((task) => task.urgency === "urgent").length;
+  document.getElementById("amountUrgent").innerHTML = `${summaryData.urgent_count}`;
 }
 
 /**
@@ -125,13 +130,12 @@ function setDeadline() {
  */
 function formatNextDate() {
   const nextDate = getNextDate();
-
-  if (nextDate) {
+  if (nextDate != 'None') {
     const options = { month: "long", day: "numeric", year: "numeric" };
     const formattedDate = nextDate.toLocaleDateString("en-US", options);
     return formattedDate;
   }
-  return "None";
+  return nextDate;
 }
 
 /**
@@ -140,17 +144,30 @@ function formatNextDate() {
  * @returns{Date} - upcoming dates or null if there is none.
  */
 function getNextDate() {
-  const currentDate = new Date();
-  currentDate.setHours(0, 0, 0, 0);
-  const isoDate = currentDate.toISOString();
-  let nextDate = null;
+  return summaryData.next_deadline;
+  // const currentDate = new Date();
+  // currentDate.setHours(0, 0, 0, 0);
+  // const isoDate = currentDate.toISOString();
+  // let nextDate = null;
 
-  for (const task of dataTasks) {
-    const taskDate = new Date(task.date);
+  // for (const task of dataTasks) {
+  //   const taskDate = new Date(task.date);
 
-    if (taskDate >= currentDate && (!nextDate || taskDate < nextDate)) {
-      nextDate = taskDate;
-    }
-  }
-  return nextDate;
+  //   if (taskDate >= currentDate && (!nextDate || taskDate < nextDate)) {
+  //     nextDate = taskDate;
+  //   }
+  // }
+  // return nextDate;
+}
+
+function setDoneTasks() {
+  document.getElementById("amountTasksDone").innerHTML = `${summaryData.done_count}`;
+}
+
+function setTasksInProgress() {
+  document.getElementById("amountTasksInProgress").innerHTML = `${summaryData.in_progress_count}`;
+}
+
+function tasksAwaitFeedback() {
+  document.getElementById("amountTasksAwaitFeedback").innerHTML = `${summaryData.feedback_count}`;
 }
