@@ -144,11 +144,11 @@ function generatInfoHTML(contact) {
     return /*html*/`
     <div class="email">
         <p>Email</p>
-        <a href="#">${contact['email']}</a>
+        <a href="mailto: ${contact['email']}">${contact['email']}</a>
     </div>
     <div class="phone">
         <p>Phone</p>
-        <a href="#">${contact['phone-number']}</a>
+        <a href="tel: ${contact['phonenumber']}">${contact['phonenumber']}</a>
     </div>
     `;
 }

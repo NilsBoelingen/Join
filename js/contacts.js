@@ -292,9 +292,10 @@ function editOldContact(id) {
   contact.firstname = firstname;
   contact.lastname = lastname;
   contact.email = emailInput.value;
-  contact["phone-number"] = phoneInput.value;
+  contact.phonenumber = phoneInput.value;
   contacts[contactIndex] = contact;
-  setContacts();
+  updateContact(contact);
+  // setContacts();
   closeAddNewContact();
   loadContactList();
   showContact(contact.id);
@@ -316,8 +317,9 @@ async function deleteContact(id) {
       deleteUser(user);
       logOut();
     } else {
+      await deleteContactFromDb(contacts[contactIndex].id);
       contacts.splice(contactIndex, 1);
-      await setContacts();
+      // await setContacts();
     }
   } else {
     console.error("Invalid contact ID");

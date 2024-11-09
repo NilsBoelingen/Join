@@ -164,6 +164,32 @@ async function getContacts() {
     // contacts = JSON.parse(asJson);
 }
 
+async function updateContact(contact) {
+    const url = `http://127.0.0.1:8000/api/join/contacts/${contact.id}/`;
+    const payload = {
+        'firstname': contact.firstname,
+        'lastname': contact.lastname,
+        'email': contact.email,
+        'icon': contact.icon,
+        'phonenumber': contact.phonenumber
+    }
+    const options = {
+        method: 'PUT',
+        headers: authHeader,
+        body: JSON.stringify(payload)
+    }
+    await fetch(url, options);
+}
+
+async function deleteContactFromDb(contactId) {
+    const url = `http://127.0.0.1:8000/api/join/contacts/${contactId}/`;
+    const options = {
+        method: 'DELETE',
+        headers: authHeader
+    }
+    await fetch(url, options);
+}
+
 async function getSummaryData() {
     const url = 'http://127.0.0.1:8000/api/join/summary/';
     const options = {
@@ -403,15 +429,15 @@ function deleteActuallyUserfromContact() {
  * @param {string} indexOfContact = the parameter is needed to find the right contact to delete. 
  */
 function deleteAssignedTasks(indexOfContact) {
-    let idToDelete = findIdOfContact(indexOfContact);
-    for (let i = 0; i < dataTasks.length; i++) {
-        const assignedToIndex = dataTasks[i]['assignedTo'].indexOf(idToDelete);
-        if (assignedToIndex !== -1) {
-            dataTasks[i]['assignedTo'].splice(assignedToIndex, 1);
-            console.log(`Deleted assignment of task ${dataTasks[i].taskId} for contact with id: ${idToDelete}`);
-        }
-    }
-    setTasks();
+    // let idToDelete = findIdOfContact(indexOfContact);
+    // for (let i = 0; i < dataTasks.length; i++) {
+    //     const assignedToIndex = dataTasks[i]['assignedTo'].indexOf(idToDelete);
+    //     if (assignedToIndex !== -1) {
+    //         dataTasks[i]['assignedTo'].splice(assignedToIndex, 1);
+    //         console.log(`Deleted assignment of task ${dataTasks[i].taskId} for contact with id: ${idToDelete}`);
+    //     }
+    // }
+    // setTasks();
 }
 
 /**

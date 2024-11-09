@@ -104,7 +104,7 @@ function createNewContact() {
     firstname: firstname,
     lastname: lastname,
     email: emailInput.value,
-    phonenumber: +phoneInput.value
+    phonenumber: phoneInput.value
   };
   if (idOfCurrentPage == 3) {
     pushNewContact(newContact);
