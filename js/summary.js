@@ -86,27 +86,15 @@ function setAmountTasksPosition() {
   for (let i = 0; i < columns.length; i++) {
     let position = columns[i];
     let amountContainer = document.getElementById(`amountTasks${position}`);
-    // let amountOfTasks = countTasks(position);
 
     amountContainer.innerHTML = `${summaryData.todo_count}`;
   }
 }
 
 /**
- * This function counts the number of tasks in the column "position"
- * 
- * @param {string} position - The positions are stored in the array columns in data.tasks.js
- * @returns {number} - Number of tasks in the position, for example "Todo".
- */
-// function countTasks(position) {
-//   return dataTasks.filter((task) => task.position === position).length;
-// }
-
-/**
  * This function counts the total amount of tasks in the array dataTasks in data_tasks.js. It then writes this number into the corresponding div.
  */
 function setTotalTasks() {
-  // const amountTotalTasks = dataTasks.length;
   document.getElementById("totalTasks").innerHTML = `${summaryData.total_count}`;
 }
 
@@ -114,7 +102,6 @@ function setTotalTasks() {
  * This function counts the amount of tasks set to "urgent". It then write this number into the corresponding div.
  */
 function setAmountUrgent() {
-  // let amountUrgent = dataTasks.filter((task) => task.urgency === "urgent").length;
   document.getElementById("amountUrgent").innerHTML = `${summaryData.urgent_count}`;
 }
 
