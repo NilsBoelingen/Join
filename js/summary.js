@@ -9,6 +9,8 @@ async function init() {
   // await getUsers();
   await getCurrentUser();
   await getSummaryData();
+  await getContacts();
+  await actuallyUserToContacts();
   getTimeOfDay();
   setAmountTasksPosition();
   setTotalTasks();

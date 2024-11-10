@@ -3,6 +3,14 @@
  * Also, shows the login/signup elements after a delay.
  */
 async function init() {
+    let session = await JSON.parse(localStorage.getItem('session'));
+    if (session) {
+        let token = session.token;
+        let id = await getUserIdByToken(token);
+        curentUserId = id;
+        await getCurrentUser();
+        window.location.href ='summary.html';
+    }
     showLogIn();
 }
 

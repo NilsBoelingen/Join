@@ -69,6 +69,20 @@ function setUsers() {
     setItem('users', users);
 }
 
+async function getUserIdByToken(token) {
+    const url = 'http://127.0.0.1:8000/api/auth/token_auth/';
+    const payload = { 'token': token };
+    const options = {
+        method: 'POST',
+        headers: authHeader,
+        body: JSON.stringify(payload)
+    };
+    let data = await fetch(url, options).then(res => res.json());
+    if (typeof data === 'number') {
+        return data;
+    }    
+}
+
 /**
  * This function safes the Contacts on the Server.
  * 
@@ -80,7 +94,8 @@ async function setContact(contact) {
         'lastname': contact.lastname,
         'email': contact.email,
         'icon': contact.icon,
-        'phonenumber': contact.phonenumber
+        'phonenumber': contact.phonenumber,
+        'user': contact && contact.user ? contact.user : false
     }
     const options = {
         method: 'POST',
@@ -180,9 +195,6 @@ async function updateContact(contact) {
     }
     await fetch(url, options);
 }
-
-//login remeber me umbauen: bei remember me automatischer login mit token aus localstorage
-//tasks an server anbinden
 
 async function deleteContactFromDb(contactId) {
     const url = `http://127.0.0.1:8000/api/join/contacts/${contactId}/`;
@@ -322,6 +334,8 @@ function findFreeId(array) {
  * @returns - Gives the Index of the Element back.
  */
 function getIndexOf(array, key, x) {
+    console.log('array: ',array, 'key: ', key, 'c: ', x);
+    
     for (let i = 0; i < array.length; i++) {
         const object = array[i];
         const objKey = array[i][key]
@@ -358,8 +372,10 @@ function createHeaderInitials() {
  * 
  */
 async function logOut() {
-    deleteActuallyUserfromContact();
+    debugger
+    await deleteActuallyUserfromContact();
     await setCurrentUser(-1);
+    sessionStorage.clear();
     window.location.href = 'index.html';
 }
 
@@ -368,23 +384,28 @@ async function logOut() {
  * 
  */
 async function actuallyUserToContacts() {
-    let i = getIndexOf(users, 'id', currentUser);
-    let user = users[i];
-    let nameParts = users[i].name.split(' ');
+    let userAsContact = localStorage.getItem('userAsContact');
+    
+    if (userAsContact) {
+        return;
+    }
+    
+    let nameParts = currentUser.username.split(' ');
     let lastname = nameParts.pop() || '';
     let firstname = nameParts.join(' ') || '';
     userContactId = findFreeId(contacts);
     let userArray = {
-        id: userContactId,
-        'icon': user.icon,
+        'id': userContactId,
+        'icon': getRandomColor(),
         'firstname': firstname,
         'lastname': lastname + ' (YOU)',
-        'email': user.email,
-        'phone-number': '',
+        'email': currentUser.email,
+        'phonenumber': '',
         'user': true,
     }
+    localStorage.setItem('userAsContact', true);
     contacts.push(userArray);
-    await setContacts();
+    await setContact(userArray);
 }
 
 /**
@@ -417,12 +438,12 @@ function checkLoginStatus() {
  * This function delets the actually User from Contacts-Array. It called when User logged out.
  * 
  */
-function deleteActuallyUserfromContact() {
+async function deleteActuallyUserfromContact() {
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
         if (contact.user) {
-            contacts.splice(i, 1);
-            setContacts();
+            await deleteContactFromDb(contact.id);
+            localStorage.removeItem('userAsContact');
         }
     }
 }
@@ -466,3 +487,16 @@ function deleteUser(user) {
         setUsers();
     }
 }
+
+/**
+ * This function generates and returns a random color from a predefined set of colors.
+ * 
+ * @returns {string} - A randomly selected color.
+ */
+function getRandomColor() {
+    let colors = ['#FF7A00', '#FF5EB3', '#6E52FF', '#9327FF', '#00BEE8', '#1FD7C1', '#FF745E', '#FFA35E', '#FC71FF', '#FFC701', '#0038FF', '#C3FF2B', '#FFE62B', '#FF4646', '#FFBB2B', '#9b1212', '#7a80e8', '#046657', '#869b4c'];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+
+//login remeber me umbauen: bei remember me automatischer login mit token aus localstorage
+//tasks an server anbinden
