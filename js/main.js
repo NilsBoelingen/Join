@@ -181,6 +181,9 @@ async function updateContact(contact) {
     await fetch(url, options);
 }
 
+//login remeber me umbauen: bei remember me automatischer login mit token aus localstorage
+//tasks an server anbinden
+
 async function deleteContactFromDb(contactId) {
     const url = `http://127.0.0.1:8000/api/join/contacts/${contactId}/`;
     const options = {
