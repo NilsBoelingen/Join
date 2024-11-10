@@ -134,7 +134,7 @@ function formatNextDate() {
   const nextDate = getNextDate();
   if (nextDate != 'None') {
     const options = { month: "long", day: "numeric", year: "numeric" };
-    const formattedDate = nextDate.toLocaleDateString("en-US", options);
+    const formattedDate = nextDate;
     return formattedDate;
   }
   return nextDate;

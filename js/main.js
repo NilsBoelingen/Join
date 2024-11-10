@@ -32,41 +32,50 @@ async function initOthers() {
 }
 
 /**
- * This is the General Function to upload informations to the Server.
- * @param {string} key - This is the parameter, to find the informations on the server. 
- * @param {string} value - The value are the imformations to safe. 
- * @returns - Ensures that after the function is called, other functions wait for it.
- */
-async function setItem(key, value) {
-    const payload = { key, value, token: STORAGE_TOKEN };
-    return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
-        .then(res => res.json());
-}
-
-/**
- * This is a function to get the safed informations from the server. 
- * @param {string} key - Is needed do identify the right value.
- * @returns - Ensures that after the function is called, other functions wait for it.
- */
-async function getItem(key) {
-    const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-    return fetch(url).then(res => res.json());
-}
-
-/**
  * This function safes the Tasks on the Server.
  * 
  */
-function setTasks() {
-    setItem('tasks', dataTasks);
+async function setTask(task) {
+    const url = 'http://127.0.0.1:8000/api/join/task/';
+    const options = {
+        method: 'POST',
+        headers: authHeader,
+        body: JSON.stringify(task)
+    };
+    let result = await fetch(url, options);
+    if (!result.ok) {
+        throw new Error('Failed to save task');
+    }
+    let data = await result.json();
+    return data;
 }
 
-/**
- * This function safes the Users on the Server.
- * 
- */
-function setUsers() {
-    setItem('users', users);
+async function updateTask(task) {
+    const url = `http://127.0.0.1:8000/api/join/task/${task.id}/`;
+
+    const options = {
+        method: 'PUT',
+        headers: authHeader,
+        body: JSON.stringify(task)
+    };
+    let result = await fetch(url, options);
+    if (!result.ok) {
+        throw new Error('Failed to update task');
+    }
+    let data = await result.json();
+    return data;
+}
+
+async function deleteTaskFromDb(id) {
+    const url = `http://127.0.0.1:8000/api/join/task/${id}/`;
+    const options = {
+        method: 'DELETE',
+        headers: authHeader
+    };
+    let result = await fetch(url, options);
+    if (!result.ok) {
+        throw new Error('Failed to delete task');
+    }
 }
 
 async function getUserIdByToken(token) {
@@ -103,7 +112,6 @@ async function setContact(contact) {
         body: JSON.stringify(payload)
     }
     await fetch(url, options);
-    // setItem('contacts', contacts);
 }
 
 /**
@@ -120,19 +128,23 @@ async function setCurrentUser(id) {
  * 
  */
 async function getTasks() {
-    let data = await getItem('tasks');
-    let asJson = data.data.value;
-    dataTasks = JSON.parse(asJson);
+    let data = await getAllTasks();
+    dataTasks = data;
 }
 
-/**
- * This function retrieves the Users from the server and converts them from a string to a JSON.
- * 
- */
-async function getUsers() {
-    let data = await getItem('users');
-    let asJson = data.data.value;
-    users = JSON.parse(asJson);
+async function getAllTasks() {
+    const url = 'http://127.0.0.1:8000/api/join/task/';
+    const options = {
+        method: 'GET',
+        headers: authHeader
+    }
+    let response = await fetch(url, options);
+    if (!response.ok) {
+        console.log('Error:', result.status);
+        return;
+    }
+    let taskRes = await response.json();
+    return taskRes;
 }
 
 /**
@@ -173,10 +185,7 @@ async function getContacts() {
         return;
     }   
     let contactsRes = await result.json();
-    contacts = contactsRes;        
-    // let data = await getItem('contacts');
-    // let asJson = data.data.value;
-    // contacts = JSON.parse(asJson);
+    contacts = contactsRes;
 }
 
 async function updateContact(contact) {
@@ -333,9 +342,7 @@ function findFreeId(array) {
  * @param {string} x - This is the value to be compared.
  * @returns - Gives the Index of the Element back.
  */
-function getIndexOf(array, key, x) {
-    console.log('array: ',array, 'key: ', key, 'c: ', x);
-    
+function getIndexOf(array, key, x) {   
     for (let i = 0; i < array.length; i++) {
         const object = array[i];
         const objKey = array[i][key]
@@ -352,8 +359,6 @@ function getIndexOf(array, key, x) {
 function createHeaderInitials() {
     try {
         let userInitials = document.getElementById('userInitials');
-        // let i = getIndexOf(users, 'id', currentUser);
-        // let nameParts = users[i].name.split(' ');
         let nameParts = currentUser.username.split(' ');
         if (nameParts.length > 1) {
             let lastname = nameParts.pop() || '';
@@ -449,22 +454,6 @@ async function deleteActuallyUserfromContact() {
 }
 
 /**
- * This function is used to delete Contacts from tasks when the contact is deleted.
- * @param {string} indexOfContact = the parameter is needed to find the right contact to delete. 
- */
-function deleteAssignedTasks(indexOfContact) {
-    // let idToDelete = findIdOfContact(indexOfContact);
-    // for (let i = 0; i < dataTasks.length; i++) {
-    //     const assignedToIndex = dataTasks[i]['assignedTo'].indexOf(idToDelete);
-    //     if (assignedToIndex !== -1) {
-    //         dataTasks[i]['assignedTo'].splice(assignedToIndex, 1);
-    //         console.log(`Deleted assignment of task ${dataTasks[i].taskId} for contact with id: ${idToDelete}`);
-    //     }
-    // }
-    // setTasks();
-}
-
-/**
  * This function is needed to find the right index in Array whit id of contact.
  * @param {string} indexOfContact = this is the index of the contact in array. 
  * @returns 
@@ -497,6 +486,3 @@ function getRandomColor() {
     let colors = ['#FF7A00', '#FF5EB3', '#6E52FF', '#9327FF', '#00BEE8', '#1FD7C1', '#FF745E', '#FFA35E', '#FC71FF', '#FFC701', '#0038FF', '#C3FF2B', '#FFE62B', '#FF4646', '#FFBB2B', '#9b1212', '#7a80e8', '#046657', '#869b4c'];
     return colors[Math.floor(Math.random() * colors.length)];
 }
-
-//login remeber me umbauen: bei remember me automatischer login mit token aus localstorage
-//tasks an server anbinden

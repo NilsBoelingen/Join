@@ -45,7 +45,7 @@ function showCardEdit() {
  */
 function setTitle() {
   const titleInput = document.getElementById("cardEditTitle");
-  titleInput.value = selectedTask["title"];
+  titleInput.value = selectedTask["titel"];
 }
 
 /**
@@ -196,13 +196,13 @@ function setImageColor(idOfContainer) {
 /**
  * This function saves all the changes the user has made in the task.
  */
-function saveChangesCardEdit() {
+async function saveChangesCardEdit() {
   let IdOfTask = selectedTask["id"];
   const taskIndex = dataTasks.findIndex((task) => task.id === IdOfTask);
   selectedTask["title"] = document.getElementById("cardEditTitle").value;
   selectedTask["task"] = document.getElementById("cardEditDescription").value;
   selectedTask["date"] = document.getElementById("cardEditDate").value;
   dataTasks[taskIndex] = selectedTask;
-  setTasks();
+  await updateTask(selectedTask);
   closeCardDetailButton();
 }

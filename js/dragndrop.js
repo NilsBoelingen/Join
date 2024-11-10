@@ -35,14 +35,14 @@ function changePositionMobile(id, i, j, newPosition) {
 function changePosition(newPosition) {
   let id = currentDraggedElement;
   const taskIndex = dataTasks.findIndex((task) => task.id === id);
-
+  let task = dataTasks.find(_ => _.id == id);
   if (taskIndex !== -1) {
     dataTasks[taskIndex].position = newPosition;
   } else {
     console.error("Task not found with ID:", id);
   }
+  updateTask(task);
   renderTasksBoard();
-  setTasks();
 }
 
 /**

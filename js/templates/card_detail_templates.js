@@ -15,7 +15,7 @@ function renderCardDetailHTML(categoryClass, selectedTask, imgUrgency, IdOfTask)
           <div class="card-detail-category color-${categoryClass}">${selectedTask["category"]}</div>
           <div class="close-btn pointer"><img src="./img/board_card_detail/close.svg" alt="" onclick="closeCardDetailButton()"></div>
         </div>
-        <div class="card-detail-title">${selectedTask["title"]}</div>
+        <div class="card-detail-title">${selectedTask["titel"]}</div>
         <div class="card-detail-task font-20px-400">${selectedTask["task"]}</div>
         <div class="card-detail-date font-20px-400">
           <div class="text-color-dark-blue">Due date:</div>

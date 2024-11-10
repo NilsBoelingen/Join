@@ -13,7 +13,6 @@ const urgenciesImg = [
  */
 async function initBoard() {
   await getTasks();
-  await getUsers();
   await getCurrentUser();
   await getContacts();
   adjustLayoutFilter();
@@ -26,7 +25,8 @@ async function initBoard() {
  *
  * @param {string} filterString - This is the string coming from the filter.js which is the the input the user inserts in the search field.
  */
-function renderTasksBoard(filterString) {
+async function renderTasksBoard(filterString) {
+  await getTasks();
   anyFilteredTasks = false;
 
   for (let i = 0; i < columns.length; i++) {

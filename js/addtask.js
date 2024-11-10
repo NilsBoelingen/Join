@@ -28,7 +28,6 @@ function handleEnter(event) {
  */
 async function initAddTask() {
     await getTasks();
-    await getUsers();
     await getCurrentUser();
     await getContacts();
     loadContactsSelection();
@@ -514,8 +513,8 @@ function createNewTask() {
 function CreateTaskRoutine(createTask, inputTitel, inputDescription, inputDate, selectCategory, dialogSucces) {
     nextFreeId = findFreeId(dataTasks);
     createTask.style.backgroundColor = '#091931';
-    createJson(nextFreeId, inputTitel, inputDescription, inputDate, selectCategory);
-    setTasks();
+    let task = createJson(inputTitel, inputDescription, inputDate, selectCategory);
+    setTask(task);
     checkOpenBoard();
     showSuccessDialog(dialogSucces);
 }
@@ -557,20 +556,20 @@ function checkOpenBoard() {
  * @param {string} inputDate = This is the date by which the task must be completed.
  * @param {string} selectCategory = This is the Task category.
  */
-function createJson(nextFreeId, inputTitel, inputDescription, inputDate, selectCategory) {
+function createJson(inputTitel, inputDescription, inputDate, selectCategory) {
     let newTask = {
-        id: nextFreeId,
-        position: actualPosition,
-        category: selectCategory,
-        title: inputTitel,
-        task: inputDescription,
-        subtasks: [],
-        assignedTo: selectedContacts,
-        urgency: priorityOfTask,
-        date: inputDate,
+        'position': actualPosition,
+        'category': selectCategory,
+        'titel': inputTitel,
+        'task': inputDescription,
+        'subtasks': [],
+        'assignedTo': selectedContacts,
+        'urgency': priorityOfTask ? priorityOfTask : '',
+        'date': inputDate,
     };
     pushSubtasks(newTask);
     dataTasks.push(newTask);
+    return newTask;
 }
 
 /**

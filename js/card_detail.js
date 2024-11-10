@@ -67,8 +67,10 @@ function stopPropagationCardDetail(event) {
 /**
  * This function closes the card if the button on the top left is clicked.
  */
-function closeCardDetailButton() {
-  saveSubtasks();
+function closeCardDetailButton(closeWhileDelete=false) {
+  if (!closeWhileDelete) {
+    saveSubtasks();
+  }
   document.getElementById("cardDetailContainer").classList.add("d-none");
   emptyInputFilter();
   renderTasksBoard();
@@ -77,11 +79,11 @@ function closeCardDetailButton() {
 /**
  * This function saves the subtasks if the user checks the checkbox.
  */
-function saveSubtasks() {
+async function saveSubtasks() {
   let IdOfTask = selectedTask["id"];
   const taskIndex = dataTasks.findIndex((task) => task.id === IdOfTask);
   dataTasks[taskIndex] = selectedTask;
-  setTasks();
+  await updateTask(selectedTask);
 }
 
 /**
@@ -229,10 +231,8 @@ function SVGMouseOut(elementId, iconName) {
  * 
  * @param {number} IdOfTask - ID of the task.
  */
-function deleteTask(IdOfTask) {
-  const taskIndex = dataTasks.findIndex((task) => task.id === IdOfTask);
-  dataTasks.splice(taskIndex, 1);
-  setTasks();
-  closeCardDetailButton();
+async function deleteTask(IdOfTask) {
+  await deleteTaskFromDb(IdOfTask);
+  closeCardDetailButton(true);
   renderTasksBoard();
 }

@@ -23,7 +23,7 @@ function createTasksHTML(i, j, tasks, categoryClass) {
             <span onclick="changePositionMobile(${tasks["id"]}, ${i}, ${j}, 'Done')">Done</span>
           </div>
         </div>
-      <h3 class="card-title overflow-hidden">${tasks["title"]}</h3>
+      <h3 class="card-title overflow-hidden">${tasks["titel"]}</h3>
       <p>${tasks["task"]}</p>
       <div class="subtasks-board" id="subtasks${i}${j}"></div>
       <div class="space-between align-center align-stretch min-height-32">
