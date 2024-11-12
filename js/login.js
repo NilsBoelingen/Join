@@ -4,7 +4,8 @@
  */
 async function init() {
     let session = await JSON.parse(localStorage.getItem('session'));
-    if (session) {
+    let fromLogOut = await JSON.parse(sessionStorage.getItem('fromLogOut'));
+    if (session && !fromLogOut) {
         let token = session.token;
         let id = await getUserIdByToken(token);
         curentUserId = id;
@@ -84,7 +85,7 @@ async function tryLogIn(email, password) {
             headers: header,
             body: JSON.stringify(body)
         };
-        const res = await fetch(url, options);
+        const res = await fetch(url, options);        
         if (!res.ok) {
             handleLoginError(res);
             return;
@@ -125,8 +126,11 @@ async function handleLoginError(error) {
  * This function logs in the guest user and redirects to the summary page.
  */
 async function guestLogIn() {
-    await setCurrentUser(1);
-    window.location.href = 'summary.html';
+    const data = await tryLogIn('guest@guest.com', 'Gast1234');
+    if (data) {
+        sessionStorage.setItem('session', JSON.stringify(data));
+        window.location.href ='summary.html';                
+    }
 }
 
 /**

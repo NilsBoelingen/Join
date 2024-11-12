@@ -3,7 +3,7 @@ let idOfCurrentPage = 6;
 let templatesLoaded = false;
 const STORAGE_TOKEN = 'RPU0FT0UVM1WMXF2YVD579M9QJN3HJWKW84Z2NEB';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
-let currentUser;
+let currentUser = 1;
 let userContactId;
 const local = JSON.parse(localStorage.getItem('session'));
 const session = JSON.parse(sessionStorage.getItem('session'));
@@ -17,7 +17,12 @@ if (session) {
     token = session.token;
     curentUserId = session.id;       
 }
-const authHeader = new Headers({ 'Content-Type': 'application/json', 'Authorization': `Token ${token}` });
+let authHeader;
+if (token) {
+    authHeader = new Headers({ 'Content-Type': 'application/json', 'Authorization': `Token ${token}` });
+} else {
+    authHeader = new Headers({ 'Content-Type': 'application/json' });
+}
 
 
 /**
@@ -120,7 +125,7 @@ async function setContact(contact) {
  */
 async function setCurrentUser(id) {
     sessionStorage.setItem('currentUser', id);
-    return setItem('currentUser', id);
+    return;
 }
 
 /**
@@ -377,10 +382,10 @@ function createHeaderInitials() {
  * 
  */
 async function logOut() {
-    debugger
     await deleteActuallyUserfromContact();
     await setCurrentUser(-1);
     sessionStorage.clear();
+    sessionStorage.setItem('fromLogOut', true);
     window.location.href = 'index.html';
 }
 
