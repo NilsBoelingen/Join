@@ -7,7 +7,6 @@ let IdOfCurrentContact;
  * creating header initials, and loading the contact list.
  */
 async function init() {
-  await getUsers();
   await getCurrentUser();
   await getContacts();
   await getTasks();
@@ -309,7 +308,6 @@ function editOldContact(id) {
  */
 async function deleteContact(id) {
   const contactIndex = getIndexById(id);
-  deleteAssignedTasks(id);
   if (contactIndex !== -1) {
     // Remove the contact at the found index
     if (contacts[contactIndex].user) {
