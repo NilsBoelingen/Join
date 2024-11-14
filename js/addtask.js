@@ -631,11 +631,13 @@ function setCategory(category) {
  * 
  */
 function hideDropDownCategory() {
-    const selectCategoryOptions = document.getElementById('selectCategoryOptions');
-    const arrow = document.getElementById('arrowDrowpDown');
-    arrow.style.transform = 'rotate(0deg)';
-    document.getElementById("selectCategory").blur();
-    hideDropDownCategoryDelay()
+    setTimeout(() => {
+        const selectCategoryOptions = document.getElementById('selectCategoryOptions');
+        const arrow = document.getElementById('arrowDrowpDown');
+        arrow.style.transform = 'rotate(0deg)';
+        document.getElementById("selectCategory").blur();
+        hideDropDownCategoryDelay()
+    }, 150);
 }
 
 /**

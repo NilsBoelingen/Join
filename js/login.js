@@ -55,6 +55,8 @@ async function logIn() {
             alert('Bitte Passwort eingeben');
         } else {
             const data = await tryLogIn(email, password);
+            console.log(data);
+            
             if (data) {
                 setToLocalStorage(data);
                 window.location.href ='summary.html';                
@@ -85,13 +87,13 @@ async function tryLogIn(email, password) {
             headers: header,
             body: JSON.stringify(body)
         };
-        const res = await fetch(url, options);        
+        const res = await fetch(url, options);
+        const data = await res.json();
         if (!res.ok) {
             handleLoginError(res);
             return;
         }
-        const data = await res.json();
-        return data;
+        return data;  
     } catch (e) {
         handleLoginError(e);
     }
@@ -102,18 +104,24 @@ async function handleLoginError(error) {
     let errorMessage = document.getElementById('login-message');
     
     if (error.status === 401) {
-        let message = await error.json();
         errorMessageContainer.classList.remove('d-none');
-        errorMessage.innerHTML = message.error;
+        errorMessage.innerHTML = 'Password incorrect';
+        setTimeout(() => {
+            errorMessageContainer.classList.add('d-none');
+        }, 1000);
+        return;
+    }
+    if (error.status === 404) { 
+        errorMessageContainer.classList.remove('d-none');
+        errorMessage.innerHTML = 'E-Mail not found';
         setTimeout(() => {
             errorMessageContainer.classList.add('d-none');
         }, 1000);
         return;
     }
     if (error.status === 500) {
-        let message = await error.json();
         errorMessageContainer.classList.remove('d-none');
-        errorMessage.innerHTML = message.error;
+        errorMessage.innerHTML = error.statusText;
         setTimeout(() => {
             errorMessageContainer.classList.add('d-none');
         }, 1000);
