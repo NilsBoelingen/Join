@@ -65,6 +65,12 @@ async function logIn() {
     }
 }
 
+/**
+ * This function set the userdata to local storage or session storage.
+ * When user decide to remember, the data set to local storage, otherwise session storage.
+ * 
+ * @param {JSON} data - The Userdata for save
+ */
 function setToLocalStorage(data) {
     let remember = document.getElementById('remember');
     if (remember.checked) {
@@ -74,6 +80,13 @@ function setToLocalStorage(data) {
     }
 }
 
+/**
+ * This function trys to login the user to the application.
+ * 
+ * @param {string} email - user email
+ * @param {string} password - user password
+ * @returns 
+ */
 async function tryLogIn(email, password) {
     try {
         const url = 'http://127.0.0.1:8000/api/auth/login/';
@@ -99,6 +112,12 @@ async function tryLogIn(email, password) {
     }
 }
 
+/**
+ * This function handles the login errors
+ * 
+ * @param {JSON} error - response from server 
+ * @returns 
+ */
 async function handleLoginError(error) {
     let errorMessageContainer = document.getElementById('login-message-container');
     let errorMessage = document.getElementById('login-message');

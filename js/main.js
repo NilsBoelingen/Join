@@ -55,6 +55,12 @@ async function setTask(task) {
     return data;
 }
 
+/**
+ * This function updates the Tasks on the Server.
+ * 
+ * @param {JSON} task - The task data 
+ * @returns 
+ */
 async function updateTask(task) {
     const url = `http://127.0.0.1:8000/api/join/task/${task.id}/`;
 
@@ -71,6 +77,11 @@ async function updateTask(task) {
     return data;
 }
 
+/**
+ * This function delete the Task on the Server.
+ * 
+ * @param {string} id - The id of the task
+ */
 async function deleteTaskFromDb(id) {
     const url = `http://127.0.0.1:8000/api/join/task/${id}/`;
     const options = {
@@ -83,6 +94,13 @@ async function deleteTaskFromDb(id) {
     }
 }
 
+/**
+ * This function is used to login the user whit his token from local storage.
+ * Its an automatically login, when user checked remember me.
+ * 
+ * @param {string} token authentication token
+ * @returns 
+ */
 async function getUserIdByToken(token) {
     const url = 'http://127.0.0.1:8000/api/auth/token_auth/';
     const payload = { 'token': token };
@@ -193,6 +211,11 @@ async function getContacts() {
     contacts = contactsRes;
 }
 
+/**
+ * This function update a contact on the server.
+ * 
+ * @param {JSON} contact - contact data 
+ */
 async function updateContact(contact) {
     const url = `http://127.0.0.1:8000/api/join/contacts/${contact.id}/`;
     const payload = {
@@ -210,6 +233,11 @@ async function updateContact(contact) {
     await fetch(url, options);
 }
 
+/**
+ * This function deletes a contact on the server.
+ * 
+ * @param {JSON} contactId - string 
+ */
 async function deleteContactFromDb(contactId) {
     const url = `http://127.0.0.1:8000/api/join/contacts/${contactId}/`;
     const options = {
@@ -219,6 +247,11 @@ async function deleteContactFromDb(contactId) {
     await fetch(url, options);
 }
 
+/**
+ * This function get the data for the summary board from the server.
+ * 
+ * @returns summary data as json object
+ */
 async function getSummaryData() {
     const url = 'http://127.0.0.1:8000/api/join/summary/';
     const options = {
