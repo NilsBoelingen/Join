@@ -113,7 +113,8 @@ async function tryLogIn(email, password) {
 }
 
 /**
- * This function handles the login errors
+ * This function handles the login errors that occur when trying to
+ * login with an invalid email address or password and returns an errormessage.
  * 
  * @param {JSON} error - response from server 
  * @returns 

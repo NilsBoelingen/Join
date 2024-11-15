@@ -30,7 +30,6 @@ if (token) {
  * 
  */
 async function initOthers() {
-    await getUsers();
     await getCurrentUser();
     createHeaderInitials();
     checkLoginStatus();
@@ -175,20 +174,20 @@ async function getAllTasks() {
  * 
  */
 async function getCurrentUser() {
-    const url = `http://127.0.0.1:8000/api/join/user/${curentUserId}`;
-    const options = {
-        method: 'GET',
-        headers: authHeader
+    if (curentUserId) {
+        const url = `http://127.0.0.1:8000/api/join/user/${curentUserId}`;
+        const options = {
+            method: 'GET',
+            headers: authHeader
+        }
+        let response = await fetch(url, options);
+        if (!response.ok) {
+            console.log('Error:', result.status);
+            return;
+        }
+        let userRes = await response.json();
+        currentUser = userRes;
     }
-    let response = await fetch(url, options);
-    if (!response.ok) {
-        console.log('Error:', result.status);
-        return;
-    }
-    let userRes = await response.json();
-    currentUser = userRes;
-    // let data = await getItem('currentUser');
-    // currentUser = data.data.value;
 }
 
 /**
